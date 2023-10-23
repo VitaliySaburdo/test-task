@@ -12,11 +12,9 @@ import {
 } from "./LoginForm.styled";
 import { Icon } from "../Icon/Icon";
 
-interface LoginFormProps {
-  closeModal: () => void;
-}
 
-export const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
+
+export const LoginForm: React.FC = () => {
   const [showPass, setShowPass] = useState(false);
   const [typePass, setTypePass] = useState("password");
 
@@ -42,7 +40,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ closeModal }) => {
           onSubmit={({ email, password }, { resetForm }) => {
             // dispatch(logIn({ values: { email, password } }));
             resetForm();
-            closeModal();
           }}
         >
           <StyledForm>

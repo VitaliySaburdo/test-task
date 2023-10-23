@@ -32,7 +32,7 @@ export const StyledField = styled(Field)`
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 3px;
   &:focus {
-    outline-color: ${(props) => props.theme.colors.secondaryColor};
+    outline-color: #313f8f;
   }
 `;
 
@@ -53,7 +53,7 @@ export const StyledMessage = styled(ErrorMessage)`
 
 export const Text = styled.p`
   margin-top: 15px;
-  font-family: ${(p) => p.theme.fonts.second};
+  /* font-family: ${(p) => p.theme.fonts.second}; */
   font-weight: 400px;
   font-size: 16px;
   text-align: center;
