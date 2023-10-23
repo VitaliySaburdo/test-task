@@ -50,8 +50,8 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getUserById.fulfilled, (state, action) => {
-        state.users = action.payload;
+      .addCase(getUserById.fulfilled, (state, action: PayloadAction<string>) => {
+        state.users.find((user) => user.id === action.payload);
         state.isLoading = false;
         state.error = null;
       })
@@ -60,7 +60,7 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(changeUser.fulfilled, (state, action) => {
+      .addCase(changeUser.fulfilled, (state, action: PayloadAction<UserProps>) => {
         const index = state.users.findIndex(
           (item) => item.id === action.payload.id
         );
