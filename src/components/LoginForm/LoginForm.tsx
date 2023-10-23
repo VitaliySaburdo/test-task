@@ -31,6 +31,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <>
+      
         <Formik
           initialValues={{
             email: "",
@@ -39,6 +40,7 @@ export const LoginForm: React.FC = () => {
           validationSchema={loginSchema}
           onSubmit={({ email, password }, { resetForm }) => {
             // dispatch(logIn({ values: { email, password } }));
+            console.log(email, password);
             resetForm();
           }}
         >
