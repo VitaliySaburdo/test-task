@@ -9,13 +9,13 @@ import {
   deleteUser,
 } from "./userOperations";
 
-interface ProductsState {
+interface UsersState {
   users: UserProps[];
   isLoading: boolean;
   error: string | null;
 }
 
-const initialState: ProductsState = {
+const initialState: UsersState = {
   users: [],
   isLoading: false,
   error: null,
@@ -33,7 +33,7 @@ const extraActions = [
 const getActions = (type: string) =>
   extraActions.map((action: any) => action[type]);
 
-const productsSlice = createSlice({
+const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
@@ -89,5 +89,5 @@ const productsSlice = createSlice({
       }),
 });
 
-export const { reset } = productsSlice.actions;
-export const productsReducer = productsSlice.reducer;
+export const { reset } = usersSlice.actions;
+export const productsReducer = usersSlice.reducer;
