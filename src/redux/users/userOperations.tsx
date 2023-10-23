@@ -69,12 +69,12 @@ export const changeFieldUser = createAsyncThunk(
   }
 );
 
-// DELETE @ / deleteProduct
-export const deleteProduct = createAsyncThunk(
+// DELETE @ / deleteUser
+export const deleteUser = createAsyncThunk(
   'users/deleteUser',
   async (id: string, thunkAPI) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/products/${id}` );
+      const res = await axios.delete(`${BASE_URL}/table/${id}` );
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
