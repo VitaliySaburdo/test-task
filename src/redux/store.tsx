@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
+import {productsReducer} from './users/userSlice';
 import {
   persistStore,
   FLUSH,
@@ -12,7 +13,8 @@ import {
 
 
 const rootReducer = combineReducers({
-  auth:  authReducer,
+  auth: authReducer,
+  users: productsReducer,
 });
 
 
