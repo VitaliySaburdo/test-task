@@ -10,13 +10,13 @@ import {
 } from "./userOperations";
 
 interface ProductsState {
-  products: UserProps[];
+  users: UserProps[];
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: ProductsState = {
-  products: [],
+  users: [],
   isLoading: false,
   error: null,
 };
@@ -38,7 +38,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.products = [];
+      state.users = [];
       state.isLoading = false;
       state.error = null;
     },
@@ -46,25 +46,33 @@ const productsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.products = action.payload;
+        state.users = action.payload;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(getUserById.fulfilled, (state, action) => {
-        state.products = action.payload;
+        state.users = action.payload;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(addUser.fulfilled, (state, action: PayloadAction<UserProps>) => {
-        state.products.push(action.payload);
+        state.users.push(action.payload);
         state.isLoading = false;
         state.error = null;
       })
+      .addCase(changeUser.fulfilled, (state, action) => {
+        const index = state.users.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.users[index] = action.payload;
+        }
+      })
       .addCase(deleteUser.fulfilled, (state, action: PayloadAction<string>) => {
-        const index = state.products.findIndex(
+        const index = state.users.findIndex(
           (item) => item.id === action.payload
         );
-        state.products.splice(index, 1);
+        state.users.splice(index, 1);
         state.isLoading = false;
         state.error = null;
       })
