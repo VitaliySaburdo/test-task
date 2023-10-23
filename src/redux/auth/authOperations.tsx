@@ -24,7 +24,6 @@ export const logIn = createAsyncThunk(
       return res.data;
     } catch (error: any) {
       const { message } = error.response.data.error;
-      console.log(error);
       if (message === "Invalid credentials.") {
         notify({
           message: `User "${values.username}" is not found, please register and try again`,
