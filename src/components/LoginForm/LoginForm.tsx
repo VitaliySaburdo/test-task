@@ -41,8 +41,7 @@ export const LoginForm: React.FC = () => {
           }}
           validationSchema={loginSchema}
           onSubmit={({ name, password }, { resetForm }) => {
-            dispatch(logIn({ values: { name, password } }));
-            console.log({ name, password });
+            dispatch(logIn({ values: { username: name, password: password } }));
             resetForm();
           }}
         >

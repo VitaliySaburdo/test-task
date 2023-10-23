@@ -1,5 +1,4 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import {
   persistStore,
@@ -10,16 +9,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import persistReducer from 'redux-persist/es/persistReducer';
 
-const authPersistConfig = {
-  key: 'auth',
-  storage,
-  whiteList: ['token'],
-};
 
 const rootReducer = combineReducers({
-  auth: persistReducer(authPersistConfig, authReducer),
+  auth:  authReducer,
 });
 
 
