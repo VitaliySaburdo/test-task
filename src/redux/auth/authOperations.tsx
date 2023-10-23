@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { notify } from "../../helpers/Notification";
 
-axios.defaults.baseURL = "https://sweet-paradise-api.onrender.com";
+axios.defaults.baseURL = "https://146.190.118.121/api";
 
 // Utility to add JWT
 const setAuthHeader = (token: string) => {
@@ -39,14 +39,14 @@ export const register = createAsyncThunk(
 );
 
 type LogInPayload = {
-  values: { email: string; password: string };
+  values: { name: string; password: string };
 };
 
 export const logIn = createAsyncThunk(
   "auth/login",
   async ({ values }: LogInPayload, thunkAPI) => {
     try {
-      const res = await axios.post("/users/login", values);
+      const res = await axios.post("/login", values);
       setAuthHeader(res.data.token);
       if (res.status === 201) {
         notify({
@@ -59,7 +59,7 @@ export const logIn = createAsyncThunk(
       const { message } = error.response.data;
       if (message === "Email don`t found") {
         notify({
-          message: `User "${values.email}" is not found, please register and try again`,
+          message: `User "${values.name}" is not found, please register and try again`,
           type: "warning",
         });
       }

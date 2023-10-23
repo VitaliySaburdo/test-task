@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Formik } from "formik";
-// import { useAppDispatch } from "../../hooks/reduxHook";
-// import { logIn } from "../../redux/auth/authOperations";
+import { useAppDispatch } from "../../hooks/reduxHook";
+import { logIn } from "../../redux/auth/authOperations";
 import { loginSchema } from "../../helpers/ValidationSchemas";
 import {
   StyledForm,
@@ -29,36 +29,36 @@ export const LoginForm: React.FC = () => {
     }
   };
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>
       <MainWrapper>
         <Formik
           initialValues={{
-            email: "",
+            name: "",
             password: "",
           }}
           validationSchema={loginSchema}
-          onSubmit={({ email, password }, { resetForm }) => {
-            // dispatch(logIn({ values: { email, password } }));
-            console.log(email, password);
+          onSubmit={({ name, password }, { resetForm }) => {
+            dispatch(logIn({ values: { name, password } }));
+            console.log({ name, password });
             resetForm();
           }}
         >
           <StyledForm>
             <Title>Login</Title>
-            <StyledLabel htmlFor="email">Email</StyledLabel>
+            <StyledLabel htmlFor="name">Name</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
                 type="text"
-                id="email"
-                name="email"
-                placeholder="Please enter your email"
+                id="name"
+                name="name"
+                placeholder="Please enter your name"
               />
-              <Icon id={"icon-mail"} />
+              <Icon id={"icon-user"} />
             </div>
-            <StyledMessage name="email" component="div" />
+            <StyledMessage name="name" component="div" />
 
             <StyledLabel htmlFor="password">Password</StyledLabel>
             <div style={{ position: "relative" }}>
