@@ -9,6 +9,8 @@ import {
   StyledLabel,
   StyledMessage,
   Title,
+  MainWrapper,
+  Button,
 } from "./LoginForm.styled";
 import { Icon } from "../Icon/Icon";
 
@@ -31,7 +33,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <>
-      
+      <MainWrapper>
         <Formik
           initialValues={{
             email: "",
@@ -45,7 +47,7 @@ export const LoginForm: React.FC = () => {
           }}
         >
           <StyledForm>
-            <Title>`Login`</Title>
+            <Title>Login</Title>
             <StyledLabel htmlFor="email">Email</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
@@ -74,13 +76,14 @@ export const LoginForm: React.FC = () => {
             </div>
             <StyledMessage name="password" component="div" />
 
-            <button
+            <Button
               type="submit"
             >
               Login
-            </button>
+            </Button>
           </StyledForm>
         </Formik>
+        </MainWrapper>
     </>
   );
 };

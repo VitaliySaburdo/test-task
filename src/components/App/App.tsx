@@ -6,10 +6,10 @@ import { theme } from "../../theme/theme";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-    <Routes>
-      <Route index element={< LoginPage/>} />
+      <Routes>
+        <Route index element={<LoginPage />} />
       </Routes>
-      </ThemeProvider>
+    </ThemeProvider>
   );
 }
 

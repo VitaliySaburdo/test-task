@@ -10,7 +10,10 @@ const fadeIn = keyframes`
   }
 `;
 
-
+export const MainWrapper = styled.div`
+  width: 250px;
+  margin: 0 auto;
+`
 
 export const StyledForm = styled(Form)`
   display: flex;
@@ -24,7 +27,6 @@ export const Title = styled.h2`
 
 export const StyledField = styled(Field)`
   margin: 0;
-  height: 40px;
   padding: 12px 42px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   border-radius: 20px;
@@ -55,7 +57,7 @@ export const StyledMessage = styled(ErrorMessage)`
 
 export const Text = styled.p`
   margin-top: 15px;
-  /* font-family: ${(p) => p.theme.fonts.second}; */
+  font-family: ${(p) => p.theme.fonts.second};
   font-weight: 400px;
   font-size: 16px;
   text-align: center;
@@ -69,4 +71,29 @@ export const Btn = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: blue;
+`;
+
+export const Button = styled.button`
+  width: 145px;
+  height: 45px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  box-shadow: 0px 20px 40px 0px rgba(66, 2, 29, 0.31);
+  border: none;
+  background-color: ${(props) => props.theme.colors.secondaryColor};
+  font-family: ${(props) => props.theme.fonts.main};
+  color: ${(props) => props.theme.colors.btnTxtColor};
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 105.2%;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    background-color: ${(props) => props.theme.colors.btnHoverColor};
+  }
 `;
