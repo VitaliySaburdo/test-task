@@ -13,6 +13,7 @@ import {
 } from "./Tables.styled";
 import { Modal } from "../Modal/Modal";
 import { AddForm } from "../AddForm/AddForm";
+import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";
 
 interface TablesProps {
   nextPage: () => void;
@@ -21,6 +22,8 @@ interface TablesProps {
 
 export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
+  const [isOpenChangeModal, setIsOpenChangeModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   const users = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
@@ -29,6 +32,15 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
     setIsOpenAddModal(true);
   };
 
+  const handleChange = (id: string) => {
+    const user = users.find((user) => user.id === id);
+    if (user) {
+      setCurrentUser(user);
+    }
+    
+  };
+
+  console.log(currentUser);
   const handleDelete = (id: string) => {
     dispatch(deleteUser(id));
   };
@@ -60,10 +72,18 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
                     <button
                       type="button"
                       onClick={() => {
+                        handleChange(id);
+                      }}
+                    >
+                      Change user
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
                         handleDelete(id);
                       }}
                     >
-                      Delete
+                      Delete user
                     </button>
                   </OptionWrapper>
                 </Columns>
@@ -84,6 +104,11 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
       {isOpenAddModal && (
         <Modal onClick={() => setIsOpenAddModal(false)}>
           <AddForm />
+        </Modal>
+      )}
+      {isOpenChangeModal && (
+        <Modal onClick={() => setIsOpenChangeModal(false)}>
+          <ChangeUserForm />
         </Modal>
       )}
     </>
