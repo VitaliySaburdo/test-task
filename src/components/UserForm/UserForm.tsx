@@ -1,5 +1,4 @@
 import { Formik } from "formik";
-import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { AddSchema } from "../../helpers/ValidationSchemas";
 
@@ -24,7 +23,6 @@ export const UserForm: React.FC = () => {
       <MainWrapper>
         <Formik
           initialValues={{
-            id: uuidv4(),
             name: "",
             email: "",
             birthday_date: "",
@@ -33,11 +31,11 @@ export const UserForm: React.FC = () => {
           }}
             validationSchema={AddSchema}
           onSubmit={(
-            { id, name, email, birthday_date, phone_number, address },
+            { name, email, birthday_date, phone_number, address },
             { resetForm }
           ) => {
             dispatch(
-              addUser({ id, name, email, birthday_date, phone_number, address })
+              addUser({ name, email, birthday_date, phone_number, address })
             );
             resetForm();
           }}

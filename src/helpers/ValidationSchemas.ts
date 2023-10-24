@@ -15,12 +15,14 @@ export const AddSchema = yup.object({
     .email("Enter a valid email")
     .required("Email is required"),
   birthday_date: yup
-    .string()
-    .matches(
-      /^\d{4}-\d{2}-\d{2}$/,
-      "Birthday date must be in the format YYYY-MM-DD"
-    )
-    .required("Birthday date is required"),
+      .string()
+  .matches(
+    /^(19|20)\d\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+    "Date must be in the format YYYY-MM-DD, Date must be before today"
+  )
+  .test("is-before-today", "Date must be before today", function (value) {
+    return yup.date().max(new Date(), "Date must be before today").isValidSync(value);
+  }),
   phone_number: yup.string().required("Birthday_date is required"),
   address: yup.string().required("Birthday date is required"),
 });
