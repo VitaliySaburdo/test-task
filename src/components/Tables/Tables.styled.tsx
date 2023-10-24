@@ -31,3 +31,10 @@ export const Columns = styled.td`
   text-align: center;
   border: 1px solid grey;
 `;
+
+export const OptionWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 5px;
+`
