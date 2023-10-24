@@ -6,9 +6,11 @@ export const Tables = () => {
       <Table>
         <Head>
           <TableRow>
-            <ColumnHead>Type</ColumnHead>
-            <ColumnHead>Amount</ColumnHead>
-            <ColumnHead>Currency</ColumnHead>
+            <ColumnHead>Name</ColumnHead>
+            <ColumnHead>Email</ColumnHead>
+            <ColumnHead>Birthday date</ColumnHead>
+            <ColumnHead>Phone number</ColumnHead>
+            <ColumnHead>Address</ColumnHead>
           </TableRow>
         </Head>
       </Table>

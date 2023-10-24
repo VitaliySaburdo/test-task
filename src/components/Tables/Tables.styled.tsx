@@ -16,6 +16,7 @@ export const Head = styled.thead`
 
 export const ColumnHead = styled.th`
   height: 30px;
+  min-width: 200px;
   text-align: center;
   border: 1px solid black;
 `;

@@ -1,13 +1,13 @@
 import { Container } from "../components/Container/Container";
 import { Section } from "../components/Section/Section";
-import { Table } from "../components/Tables/Tables.styled";
+import { Tables } from "../components/Tables/Tables";
 
 export const TablesPage = () => {
   return (
     <>
       <Section>
         <Container>
-          <Table />
+          <Tables />
         </Container>
       </Section>
     </>
