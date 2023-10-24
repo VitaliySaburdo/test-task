@@ -53,9 +53,9 @@ export const addUser = createAsyncThunk(
 // PUT @ / changeUser
 export const changeUser = createAsyncThunk(
   "users/changeUser",
-  async (id: string, thunkAPI) => {
+  async ({ id, userData }: { id: string, userData: AddUserProps }, thunkAPI) => {
     try {
-      const res = await axios.put(`/table/${id}`);
+      const res = await axios.put(`/table/${id}`, userData);
       return res.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
