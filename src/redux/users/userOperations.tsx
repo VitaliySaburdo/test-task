@@ -18,19 +18,6 @@ export const getAllUsers = createAsyncThunk(
   }
 );
 
-// GET @ / getUserById
-export const getUserById = createAsyncThunk(
-  "users/getUserById",
-  async (id: string, thunkAPI) => {
-    try {
-      const res = await axios.get(`/table/${id}`);
-      return res.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 // POST @ / addUser
 export const addUser = createAsyncThunk(
   "users/addUser",
@@ -50,31 +37,6 @@ export const addUser = createAsyncThunk(
   }
 );
 
-// PUT @ / changeUser
-export const changeUser = createAsyncThunk(
-  "users/changeUser",
-  async ({ id, userData }: { id: string, userData: AddUserProps }, thunkAPI) => {
-    try {
-      const res = await axios.put(`/table/${id}`, userData);
-      return res.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// PATCH @ / changeUser
-export const changeFieldUser = createAsyncThunk(
-  "users/changeFieldUser",
-  async (id: string, thunkAPI) => {
-    try {
-      const res = await axios.patch(`/table/${id}`);
-      return res.data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
 
 // DELETE @ / deleteUser
 export const deleteUser = createAsyncThunk(

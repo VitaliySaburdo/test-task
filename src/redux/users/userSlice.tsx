@@ -2,10 +2,7 @@ import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { UserProps } from "../../components/App/App.types";
 import {
   getAllUsers,
-  getUserById,
   addUser,
-  changeUser,
-  changeFieldUser,
   deleteUser,
 } from "./userOperations";
 
@@ -23,10 +20,7 @@ const initialState: UsersState = {
 
 const extraActions = [
   getAllUsers,
-  getUserById,
   addUser,
-  changeUser,
-  changeFieldUser,
   deleteUser,
 ];
 
@@ -50,23 +44,10 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getUserById.fulfilled, (state, action: PayloadAction<string>) => {
-        state.users.find((user) => user.id === action.payload);
-        state.isLoading = false;
-        state.error = null;
-      })
       .addCase(addUser.fulfilled, (state, action: PayloadAction<UserProps>) => {
         state.users.push(action.payload);
         state.isLoading = false;
         state.error = null;
-      })
-      .addCase(changeUser.fulfilled, (state, action: PayloadAction<UserProps>) => {
-        const index = state.users.findIndex(
-          (item) => item.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.users[index] = action.payload;
-        }
       })
       .addCase(deleteUser.fulfilled, (state, action: PayloadAction<string>) => {
         const index = state.users.findIndex(
