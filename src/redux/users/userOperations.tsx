@@ -4,7 +4,6 @@ import { AddUserProps } from "../../components/App/App.types";
 import { notify } from "../../helpers/Notification";
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
-// "https://technical-task-api.icapgroupgmbh.com/api/table/?limit=10&offset=10"
 
 // GET @ / productsAll
 export const getAllUsers = createAsyncThunk(
