@@ -1,10 +1,30 @@
-# Getting Started with Create React App
+# test-task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+I present to your attention a react application for working with user contacts.
+The application allows you to edit contacts. I wish you a
+pleasant use of the application.
 
-In the project directory, you can run:
+## Technologies
+
+The following libraries and technologies are used in the project:
+
+- react
+- react-redux
+- reduxjs/toolkit
+- redux-persist
+- react-router-dom
+- react-loader-spinner
+- react-scroll
+- react-loader-spinner
+- axios
+- styled-components
+- mui/material
+- formik
+- yup
+- hamburger-react
+- react-hot-toast
 
 ### `npm start`
 
