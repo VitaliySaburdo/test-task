@@ -11,13 +11,16 @@ import { Modal } from "../Modal/Modal";
 import { UserForm } from "../UserForm/UserForm";
 import { useAppSelector } from "../../hooks/reduxHook";
 import { selectUsers } from "../../redux/users/userSelectors";
-// import {users} from '../../db/usersDb'
 // import {UserProps} from '../App/App.types'
 
 export const Tables = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const users = useAppSelector(selectUsers);
+
+  const handleAddUser = () => {
+    setIsOpen(true)
+  }
 
   return (
     <>
@@ -57,7 +60,7 @@ export const Tables = () => {
           )}
         </tbody>
       </Table>
-      <button type="button">Add user</button>
+      <button type="button" onClick={handleAddUser}>Add user</button>
       {isOpen && (
         <Modal onClick={() => setIsOpen(false)}>
           <UserForm />

@@ -1,8 +1,8 @@
 // import { useState } from "react";
 import { Formik } from "formik";
-import { v4 as uuidv4 } from 'uuid';
-// import { useAppDispatch } from "../../hooks/reduxHook";
-// import { logIn } from "../../redux/auth/authOperations";
+import { v4 as uuidv4 } from "uuid";
+import { useAppDispatch } from "../../hooks/reduxHook";
+// import { addUser } from "../../redux/users/";
 // import { loginSchema } from "../../helpers/ValidationSchemas";
 
 import {
@@ -15,11 +15,11 @@ import {
   Button,
 } from "./UserForm.styled";
 import { Icon } from "../Icon/Icon";
+import { addUser } from "../../redux/users/userOperations";
 // import {UserProps} from '../App/App.types'
 
-
 export const UserForm: React.FC = () => {
-  //   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -35,16 +35,17 @@ export const UserForm: React.FC = () => {
           }}
           //   validationSchema={loginSchema}
           onSubmit={(
-            {id, name, email, birthday_date, phone_number, address },
+            { id, name, email, birthday_date, phone_number, address },
             { resetForm }
           ) => {
-          console.log({id, name, email, birthday_date, phone_number, address })
-            // dispatch(logIn({ values: { username: name, password: password } }));
+            dispatch(
+              addUser({ id, name, email, birthday_date, phone_number, address })
+            );
             resetForm();
           }}
         >
           <StyledForm>
-            <Title>User Form</Title>
+            <Title>Add user Form</Title>
             <StyledLabel htmlFor="name">Name</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
@@ -57,7 +58,7 @@ export const UserForm: React.FC = () => {
             </div>
             <StyledMessage name="name" component="div" />
 
-            <StyledLabel htmlFor="email">Password</StyledLabel>
+            <StyledLabel htmlFor="email">Email</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
                 type="email"
