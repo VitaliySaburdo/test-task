@@ -8,13 +8,26 @@ import {
   OptionWrapper,
 } from "./Tables.styled";
 import { users } from "../../db/usersDb.js";
+import { Modal } from "../Modal/Modal";
+import { UserForm } from "../UserForm/UserForm";
+// import {UserProps} from '../App/App.types'
 
 export const Tables = () => {
   const [userList, setUserList] = useState(users);
+  const [editUser, setEditingUser] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = (id: string) => {
     const updatedUserList = userList.filter((item) => item.id !== id);
     setUserList(updatedUserList);
+  };
+
+  const handleEdit = (id: string) => {
+    const userToEdit = userList.find((user) => user.id === id);
+    if (userToEdit) {
+      setEditingUser(userToEdit);
+      setIsOpen(true);
+    }
   };
 
   return (
@@ -41,7 +54,9 @@ export const Tables = () => {
                 <Columns>{address}</Columns>
                 <Columns>
                   <OptionWrapper>
-                    <button type="button">Edit</button>
+                    <button type="button" onClick={() => handleEdit(id)}>
+                      Edit
+                    </button>
                     <button type="button">Replace</button>
                     <button type="button" onClick={() => handleDelete(id)}>
                       Delete
@@ -54,6 +69,11 @@ export const Tables = () => {
         </tbody>
       </Table>
       <button type="button">Add user</button>
+      {isOpen && (
+        <Modal onClick={() => setIsOpen(false)}>
+          <UserForm />
+        </Modal>
+      )}
     </>
   );
 };
