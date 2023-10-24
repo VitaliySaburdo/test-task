@@ -15,7 +15,7 @@ export const logIn = createAsyncThunk(
     try {
       const res = await axios.post("/login/", values);
       console.log(res);
-      if (res.status === 201) {
+      if (res.status === 200) {
         notify({
           message: `Welcome "${values.username}"`,
           type: "success",
@@ -23,16 +23,10 @@ export const logIn = createAsyncThunk(
       }
       return res.data;
     } catch (error: any) {
-      const { message } = error.response.data.error;
-      if (message === "Invalid credentials.") {
+      console.log(error)
+      if (error.response.statusText === "Unauthorized") {
         notify({
           message: `User "${values.username}" is not found, please register and try again`,
-          type: "warning",
-        });
-      }
-      if (message === "Password is wrong") {
-        notify({
-          message: `Password is wrong try again`,
           type: "warning",
         });
       }

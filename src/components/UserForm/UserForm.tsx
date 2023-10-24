@@ -1,9 +1,7 @@
-// import { useState } from "react";
 import { Formik } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { useAppDispatch } from "../../hooks/reduxHook";
-// import { addUser } from "../../redux/users/";
-// import { loginSchema } from "../../helpers/ValidationSchemas";
+import { AddSchema } from "../../helpers/ValidationSchemas";
 
 import {
   StyledForm,
@@ -16,7 +14,7 @@ import {
 } from "./UserForm.styled";
 import { Icon } from "../Icon/Icon";
 import { addUser } from "../../redux/users/userOperations";
-// import {UserProps} from '../App/App.types'
+
 
 export const UserForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +31,7 @@ export const UserForm: React.FC = () => {
             phone_number: "",
             address: "",
           }}
-          //   validationSchema={loginSchema}
+            validationSchema={AddSchema}
           onSubmit={(
             { id, name, email, birthday_date, phone_number, address },
             { resetForm }
@@ -66,8 +64,9 @@ export const UserForm: React.FC = () => {
                 name="email"
                 placeholder="Please enter your email"
               />
+              <Icon id={"icon-mail"} />
             </div>
-            <StyledMessage name="birthday_date" component="div" />
+            <StyledMessage name="email" component="div" />
             <StyledLabel htmlFor="birthday_date">Birthday date</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
@@ -76,8 +75,9 @@ export const UserForm: React.FC = () => {
                 name="birthday_date"
                 placeholder="Please enter your Birthday date"
               />
+              <Icon id={"icon-gift"} />
             </div>
-            <StyledMessage name="phone_number" component="div" />
+            <StyledMessage name="birthday_date" component="div" />
             <StyledLabel htmlFor="phone_number">Phone number</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
@@ -86,8 +86,9 @@ export const UserForm: React.FC = () => {
                 name="phone_number"
                 placeholder="Please enter your phone number"
               />
+              <Icon id={"icon-phone"} />
             </div>
-            <StyledMessage name="address" component="div" />
+            <StyledMessage name="phone_number" component="div" />
             <StyledLabel htmlFor="address">Address</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
@@ -96,8 +97,9 @@ export const UserForm: React.FC = () => {
                 name="address"
                 placeholder="Please enter your address"
               />
+               <Icon id={"icon-address"} />
             </div>
-            <StyledMessage name="email" component="div" />
+            <StyledMessage name="address" component="div" />
             <Button type="submit">Submit</Button>
           </StyledForm>
         </Formik>
