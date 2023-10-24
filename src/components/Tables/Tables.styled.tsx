@@ -11,7 +11,7 @@ export const Table = styled.table`
 
 export const Head = styled.thead`
   height: 40px;
-  background-color: grey;
+  background-color: #b0afaf;
 `;
 
 export const ColumnHead = styled.th`
