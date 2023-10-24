@@ -4,14 +4,14 @@ import { AddUserProps } from "../../components/App/App.types";
 import { notify } from "../../helpers/Notification";
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
+// "https://technical-task-api.icapgroupgmbh.com/api/table/?limit=10&offset=10"
 
 // GET @ / productsAll
 export const getAllUsers = createAsyncThunk(
   "users/fetchAll",
-  async (_, thunkAPI) => {
+  async (page: number, thunkAPI) => {
     try {
-      const res = await axios.get("/table/");
-      console.log(res);
+      const res = await axios.get(`/table/?limit=10&offset=${page}`);
       return res.data.results;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);

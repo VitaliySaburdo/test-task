@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
-import {deleteUser} from '../../redux/users/userOperations'
+import { selectUsers } from "../../redux/users/userSelectors";
+import { deleteUser } from "../../redux/users/userOperations";
 import {
   Table,
   Head,
@@ -13,10 +14,12 @@ import {
 import { Modal } from "../Modal/Modal";
 import { UserForm } from "../UserForm/UserForm";
 
-import { selectUsers } from "../../redux/users/userSelectors";
-import { PaginatedItems } from "../Pagination/Pagination";
+interface TablesProps {
+  nextPage: () => void;
+  previousPage: () => void;
+}
 
-export const Tables = () => {
+export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const users = useAppSelector(selectUsers);
@@ -54,8 +57,6 @@ export const Tables = () => {
                 <Columns>{address}</Columns>
                 <Columns>
                   <OptionWrapper>
-                    <button type="button">Edit</button>
-                    <button type="button">Replace</button>
                     <button
                       type="button"
                       onClick={() => {
@@ -71,10 +72,15 @@ export const Tables = () => {
           )}
         </tbody>
       </Table>
+      <button type="button" onClick={previousPage}>
+        Prev
+      </button>
+      <button type="button" onClick={nextPage}>
+        Next
+      </button>
       <AddBtn type="button" onClick={handleAddUser}>
         Add user
       </AddBtn>
-      <PaginatedItems itemsPerPage={10} />
       {isOpen && (
         <Modal onClick={() => setIsOpen(false)}>
           <UserForm />
