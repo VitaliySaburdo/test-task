@@ -10,12 +10,12 @@ import {
   Title,
   MainWrapper,
   Button,
-} from "./UserForm.styled";
+} from "./AddForm.styled";
 import { Icon } from "../Icon/Icon";
 import { addUser } from "../../redux/users/userOperations";
 
 
-export const UserForm: React.FC = () => {
+export const AddForm: React.FC = () => {
   const dispatch = useAppDispatch();
 
   return (

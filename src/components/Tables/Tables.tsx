@@ -12,7 +12,7 @@ import {
   AddBtn,
 } from "./Tables.styled";
 import { Modal } from "../Modal/Modal";
-import { UserForm } from "../UserForm/UserForm";
+import { AddForm } from "../AddForm/AddForm";
 
 interface TablesProps {
   nextPage: () => void;
@@ -83,7 +83,7 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
       </AddBtn>
       {isOpen && (
         <Modal onClick={() => setIsOpen(false)}>
-          <UserForm />
+          <AddForm />
         </Modal>
       )}
     </>
