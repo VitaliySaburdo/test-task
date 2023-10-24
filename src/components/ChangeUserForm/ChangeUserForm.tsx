@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { AddSchema } from "../../helpers/ValidationSchemas";
-
+import { putUser } from "../../redux/users/userOperations";
 import {
   StyledForm,
   StyledField,
@@ -12,7 +12,6 @@ import {
   Button,
 } from "./ChangeUserForm.styled";
 import { Icon } from "../Icon/Icon";
-import { addUser } from "../../redux/users/userOperations";
 
 interface ChangeUserFormProps {
   currentUser: {
@@ -25,10 +24,10 @@ interface ChangeUserFormProps {
   };
 }
 
-export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({ currentUser }) => {
-  const {id, name, email, birthday_date, phone_number, address } = currentUser;
-
-  console.log(id);
+export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({
+  currentUser,
+}) => {
+  const { id, name, email, birthday_date, phone_number, address } = currentUser;
 
   const dispatch = useAppDispatch();
 
@@ -37,19 +36,23 @@ export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({ currentUser }) =
       <MainWrapper>
         <Formik
           initialValues={{
+            id,
             name: name || "",
             email: email || "",
             birthday_date: birthday_date || "",
             phone_number: phone_number || "",
             address: address || "",
           }}
-            validationSchema={AddSchema}
+          validationSchema={AddSchema}
           onSubmit={(
-            { name, email, birthday_date, phone_number, address },
+            { id, name, email, birthday_date, phone_number, address },
             { resetForm }
           ) => {
             dispatch(
-              addUser({ name, email, birthday_date, phone_number, address })
+              putUser({
+                id,
+                contact: { name, email, birthday_date, phone_number, address },
+              })
             );
             resetForm();
           }}
@@ -109,7 +112,7 @@ export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({ currentUser }) =
                 name="address"
                 placeholder="Please enter your address"
               />
-               <Icon id={"icon-address"} />
+              <Icon id={"icon-address"} />
             </div>
             <StyledMessage name="address" component="div" />
             <Button type="submit">Submit</Button>

@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { UserProps } from "../../components/App/App.types";
-import { getAllUsers, addUser, deleteUser, putContact } from "./userOperations";
+import { getAllUsers, addUser, deleteUser, putUser } from "./userOperations";
 
 interface UsersState {
   users: UserProps[];
@@ -14,7 +14,7 @@ const initialState: UsersState = {
   error: null,
 };
 
-const extraActions = [getAllUsers, addUser, deleteUser, putContact];
+const extraActions = [getAllUsers, addUser, deleteUser, putUser];
 
 const getActions = (type: string) =>
   extraActions.map((action: any) => action[type]);
@@ -41,7 +41,7 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(putContact.fulfilled, (state, action) => {
+      .addCase(putUser.fulfilled, (state, action) => {
         const index = state.users.findIndex(
           (user) => user.id === action.payload.id
         );

@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { AddSchema } from "../../helpers/ValidationSchemas";
-
+import { addUser } from "../../redux/users/userOperations";
 import {
   StyledForm,
   StyledField,
@@ -12,10 +12,12 @@ import {
   Button,
 } from "./AddForm.styled";
 import { Icon } from "../Icon/Icon";
-import { addUser } from "../../redux/users/userOperations";
 
+interface AddFormProps {
+  closeModal: () => void;
+}
 
-export const AddForm: React.FC = () => {
+export const AddForm: React.FC<AddFormProps> = ({closeModal}) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -38,6 +40,7 @@ export const AddForm: React.FC = () => {
               addUser({ name, email, birthday_date, phone_number, address })
             );
             resetForm();
+            closeModal();
           }}
         >
           <StyledForm>

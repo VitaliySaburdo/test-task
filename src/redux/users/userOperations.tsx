@@ -39,13 +39,15 @@ export const addUser = createAsyncThunk(
 );
 
 // PUT @ /users/:id
-export const putContact = createAsyncThunk(
+export const putUser = createAsyncThunk(
   'users/putContact',
-  async ({ id, contact }: { id: string; contact: UserProps }, thunkAPI) => {
+  async ({ id, contact }: { id: string; contact: AddUserProps }, thunkAPI) => {
     try {
       const response = await axios.put(`${BASE_URL}/table/${id}`, contact);
+      console.log(response);
       return response.data;
     } catch (error: any) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

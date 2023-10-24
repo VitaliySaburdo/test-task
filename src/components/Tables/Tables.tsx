@@ -103,7 +103,7 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
       </AddBtn>
       {isOpenAddModal && (
         <Modal onClick={() => setIsOpenAddModal(false)}>
-          <AddForm />
+          <AddForm closeModal={() => setIsOpenAddModal(false)}/>
         </Modal>
       )}
       {isOpenChangeModal && currentUser !== null && (
