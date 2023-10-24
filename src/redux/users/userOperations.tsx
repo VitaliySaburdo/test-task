@@ -11,6 +11,7 @@ export const getAllUsers = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get("/table/");
+      console.log(res);
       return res.data.results;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
