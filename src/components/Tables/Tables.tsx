@@ -14,7 +14,7 @@ import {
 import { Modal } from "../Modal/Modal";
 import { AddForm } from "../AddForm/AddForm";
 import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";
-import {UserProps} from '../App/App.types';
+import { UserProps } from "../App/App.types";
 
 interface TablesProps {
   nextPage: () => void;
@@ -38,7 +38,7 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
     if (user) {
       setCurrentUser(user);
     }
-    setIsOpenChangeModal(true)
+    setIsOpenChangeModal(true);
   };
 
   const handleDelete = (id: string) => {
@@ -103,12 +103,15 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
       </AddBtn>
       {isOpenAddModal && (
         <Modal onClick={() => setIsOpenAddModal(false)}>
-          <AddForm closeModal={() => setIsOpenAddModal(false)}/>
+          <AddForm closeModal={() => setIsOpenAddModal(false)} />
         </Modal>
       )}
       {isOpenChangeModal && currentUser !== null && (
         <Modal onClick={() => setIsOpenChangeModal(false)}>
-          <ChangeUserForm currentUser={currentUser} />
+          <ChangeUserForm
+            currentUser={currentUser}
+            closeModal={() => setIsOpenChangeModal(false)}
+          />
         </Modal>
       )}
     </>

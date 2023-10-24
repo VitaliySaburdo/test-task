@@ -22,10 +22,12 @@ interface ChangeUserFormProps {
     phone_number: string;
     address: string;
   };
+   closeModal: () => void;
 }
 
+
 export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({
-  currentUser,
+  currentUser, closeModal
 }) => {
   const { id, name, email, birthday_date, phone_number, address } = currentUser;
 
@@ -55,6 +57,7 @@ export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({
               })
             );
             resetForm();
+            closeModal();
           }}
         >
           <StyledForm>
