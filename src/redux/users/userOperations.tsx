@@ -2,6 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AddUserProps } from "../../components/App/App.types";
 import { notify } from "../../helpers/Notification";
+import {UserProps} from '../../components/App/App.types';
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 
@@ -37,6 +38,18 @@ export const addUser = createAsyncThunk(
   }
 );
 
+// PUT @ /users/:id
+export const putContact = createAsyncThunk(
+  'users/putContact',
+  async ({ id, contact }: { id: string; contact: UserProps }, thunkAPI) => {
+    try {
+      const response = await axios.put(`${BASE_URL}/table/${id}`, contact);
+      return response.data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // DELETE @ / deleteUser
 export const deleteUser = createAsyncThunk(
