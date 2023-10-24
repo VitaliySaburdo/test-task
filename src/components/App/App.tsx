@@ -5,6 +5,7 @@ import { theme } from "../../theme/theme";
 import { TablesPage } from "../../pages/TablesPage";
 import { PrivateRoute } from "../../helpers/PrivateRoute";
 import { RestrictedRoute } from "../../helpers/RestrictedRoute";
+import { NotFound } from "../../pages/NotFound";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           path="/tables"
           element={<PrivateRoute redirectTo="/" component={TablesPage} />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </ThemeProvider>
   );

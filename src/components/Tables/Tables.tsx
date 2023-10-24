@@ -7,29 +7,17 @@ import {
   Columns,
   OptionWrapper,
 } from "./Tables.styled";
-import { users } from "../../db/usersDb.js";
 import { Modal } from "../Modal/Modal";
 import { UserForm } from "../UserForm/UserForm";
+import { useAppSelector } from "../../hooks/reduxHook";
+import { selectUsers } from "../../redux/users/userSelectors";
+// import {users} from '../../db/usersDb'
 // import {UserProps} from '../App/App.types'
 
 export const Tables = () => {
-  const [userList, setUserList] = useState(users);
-  const [editUser, setEditingUser] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleDelete = (id: string) => {
-    const updatedUserList = userList.filter((item) => item.id !== id);
-    setUserList(updatedUserList);
-  };
-
-  const handleEdit = (id: string) => {
-    const userToEdit = userList.find((user) => user.id === id);
-    console.log(userToEdit)
-    if (userToEdit) {
-      setEditingUser(userToEdit);
-      setIsOpen(true);
-    }
-  };
+  const users = useAppSelector(selectUsers);
 
   return (
     <>
@@ -45,7 +33,7 @@ export const Tables = () => {
           </TableRow>
         </Head>
         <tbody>
-          {userList.map(
+          {users.map(
             ({ id, name, email, birthday_date, phone_number, address }) => (
               <tr key={id}>
                 <Columns>{name}</Columns>
@@ -55,11 +43,11 @@ export const Tables = () => {
                 <Columns>{address}</Columns>
                 <Columns>
                   <OptionWrapper>
-                    <button type="button" onClick={() => handleEdit(id)}>
+                    <button type="button">
                       Edit
                     </button>
                     <button type="button">Replace</button>
-                    <button type="button" onClick={() => handleDelete(id)}>
+                    <button type="button">
                       Delete
                     </button>
                   </OptionWrapper>

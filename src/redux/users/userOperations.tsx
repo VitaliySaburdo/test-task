@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
-const BASE_URL = "http://146.190.118.121/api";
+const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 
 // GET @ / productsAll
 export const getAllUsers = createAsyncThunk(
@@ -10,7 +10,7 @@ export const getAllUsers = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get('/table/');
-      return res.data;
+      return res.data.results;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }
