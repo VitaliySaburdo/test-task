@@ -14,6 +14,7 @@ import { Modal } from "../Modal/Modal";
 import { UserForm } from "../UserForm/UserForm";
 
 import { selectUsers } from "../../redux/users/userSelectors";
+import { PaginatedItems } from "../Pagination/Pagination";
 
 export const Tables = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,6 +74,7 @@ export const Tables = () => {
       <AddBtn type="button" onClick={handleAddUser}>
         Add user
       </AddBtn>
+      <PaginatedItems itemsPerPage={10} />
       {isOpen && (
         <Modal onClick={() => setIsOpen(false)}>
           <UserForm />

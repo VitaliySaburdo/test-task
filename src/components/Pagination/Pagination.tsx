@@ -9,7 +9,7 @@ function Items({ currentItems }: { currentItems: number[] }) {
       {currentItems &&
         currentItems.map((item) => (
           <div key={item}>
-            <h3>Item #{item}</h3>
+            <h3>{item}</h3>
           </div>
         ))}
     </>
