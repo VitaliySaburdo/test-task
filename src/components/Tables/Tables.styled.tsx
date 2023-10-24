@@ -24,3 +24,10 @@ export const ColumnHead = styled.th`
 export const TableRow = styled.tr`
   height: 30px;
 `;
+
+export const Columns = styled.td`
+  width: 100vh;
+  height: 30px;
+  text-align: center;
+  border: 1px solid grey;
+`;
