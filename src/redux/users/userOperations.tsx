@@ -2,7 +2,6 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AddUserProps } from "../../components/App/App.types";
 import { notify } from "../../helpers/Notification";
-import {UserProps} from '../../components/App/App.types';
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 
@@ -25,7 +24,7 @@ export const addUser = createAsyncThunk(
   async (userData: AddUserProps, thunkAPI) => {
     try {
       const res = await axios.post(`${BASE_URL}/table/`, userData);
-            if (res.status === 201) {
+      if (res.status === 201) {
         notify({
           message: "You successful add new contact",
           type: "success",
@@ -40,15 +39,19 @@ export const addUser = createAsyncThunk(
 
 // PUT @ /users/:id
 export const putUser = createAsyncThunk(
-  'users/putContact',
+  "users/putContact",
   async ({ id, contact }: { id: string; contact: AddUserProps }, thunkAPI) => {
     try {
       const response = await axios.put(`${BASE_URL}/table/${id}`, contact);
-      console.log(response);
       return response.data;
     } catch (error: any) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.code === "ERR_BAD_RESPONSE") {
+        notify({
+          message: "Server error",
+          type: "error",
+        });
+      }
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

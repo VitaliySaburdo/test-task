@@ -42,6 +42,8 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(putUser.fulfilled, (state, action) => {
+        console.log(action.payload.id);
+        console.log(action.payload);
         const index = state.users.findIndex(
           (user) => user.id === action.payload.id
         );
@@ -53,7 +55,6 @@ const usersSlice = createSlice({
         const index = state.users.findIndex(
           (item) => item.id === action.payload
         );
-        console.log(index);
         state.users.splice(index, 1);
         state.isLoading = false;
         state.error = null;
