@@ -38,3 +38,8 @@ justify-content: center;
 align-items: center;
 gap: 5px;
 `
+export const AddBtn = styled.button`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`

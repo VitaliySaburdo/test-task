@@ -72,6 +72,7 @@ const usersSlice = createSlice({
         const index = state.users.findIndex(
           (item) => item.id === action.payload
         );
+        console.log(index)
         state.users.splice(index, 1);
         state.isLoading = false;
         state.error = null;

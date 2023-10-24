@@ -1,16 +1,16 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {UserProps} from '../../components/App/App.types'
-
+import { UserProps } from "../../components/App/App.types";
+import { notify } from "../../helpers/Notification";
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 
 // GET @ / productsAll
 export const getAllUsers = createAsyncThunk(
-  'users/fetchAll',
+  "users/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get('/table/');
+      const res = await axios.get("/table/");
       return res.data.results;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
@@ -19,8 +19,8 @@ export const getAllUsers = createAsyncThunk(
 );
 
 // GET @ / getUserById
-export const getUserById= createAsyncThunk(
-  'users/getUserById',
+export const getUserById = createAsyncThunk(
+  "users/getUserById",
   async (id: string, thunkAPI) => {
     try {
       const res = await axios.get(`/table/${id}`);
@@ -33,7 +33,7 @@ export const getUserById= createAsyncThunk(
 
 // POST @ / addUser
 export const addUser = createAsyncThunk(
-  'users/addUser',
+  "users/addUser",
   async (userData: UserProps, thunkAPI) => {
     try {
       const res = await axios.post(`${BASE_URL}/table/`, userData);
@@ -46,7 +46,7 @@ export const addUser = createAsyncThunk(
 
 // PUT @ / changeUser
 export const changeUser = createAsyncThunk(
-  'users/changeUser',
+  "users/changeUser",
   async (id: string, thunkAPI) => {
     try {
       const res = await axios.put(`/table/${id}`);
@@ -59,7 +59,7 @@ export const changeUser = createAsyncThunk(
 
 // PATCH @ / changeUser
 export const changeFieldUser = createAsyncThunk(
-  'users/changeFieldUser',
+  "users/changeFieldUser",
   async (id: string, thunkAPI) => {
     try {
       const res = await axios.patch(`/table/${id}`);
@@ -72,12 +72,18 @@ export const changeFieldUser = createAsyncThunk(
 
 // DELETE @ / deleteUser
 export const deleteUser = createAsyncThunk(
-  'users/deleteUser',
+  "users/deleteUser",
   async (id: string, thunkAPI) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/table/${id}` );
+      const res = await axios.delete(`${BASE_URL}/table/${id}`);
       return res.data;
     } catch (error: any) {
+      if (error.message === "Request failed with status code 403") {
+        notify({
+          message: "You do not have rights to do these actions",
+          type: "warning",
+        });
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

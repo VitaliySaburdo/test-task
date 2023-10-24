@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import {deleteUser} from '../../redux/users/userOperations'
 import {
   Table,
   Head,
@@ -6,21 +8,26 @@ import {
   TableRow,
   Columns,
   OptionWrapper,
+  AddBtn,
 } from "./Tables.styled";
 import { Modal } from "../Modal/Modal";
 import { UserForm } from "../UserForm/UserForm";
-import { useAppSelector } from "../../hooks/reduxHook";
+
 import { selectUsers } from "../../redux/users/userSelectors";
-// import {UserProps} from '../App/App.types'
 
 export const Tables = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const users = useAppSelector(selectUsers);
+  const dispatch = useAppDispatch();
 
   const handleAddUser = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
+
+  const handleDelete = (id: string) => {
+    dispatch(deleteUser(id));
+  };
 
   return (
     <>
@@ -46,11 +53,14 @@ export const Tables = () => {
                 <Columns>{address}</Columns>
                 <Columns>
                   <OptionWrapper>
-                    <button type="button">
-                      Edit
-                    </button>
+                    <button type="button">Edit</button>
                     <button type="button">Replace</button>
-                    <button type="button">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        handleDelete(id);
+                      }}
+                    >
                       Delete
                     </button>
                   </OptionWrapper>
@@ -60,7 +70,9 @@ export const Tables = () => {
           )}
         </tbody>
       </Table>
-      <button type="button" onClick={handleAddUser}>Add user</button>
+      <AddBtn type="button" onClick={handleAddUser}>
+        Add user
+      </AddBtn>
       {isOpen && (
         <Modal onClick={() => setIsOpen(false)}>
           <UserForm />
