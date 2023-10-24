@@ -1,8 +1,10 @@
 // import { useState } from "react";
 import { Formik } from "formik";
+import { v4 as uuidv4 } from 'uuid';
 // import { useAppDispatch } from "../../hooks/reduxHook";
 // import { logIn } from "../../redux/auth/authOperations";
 // import { loginSchema } from "../../helpers/ValidationSchemas";
+
 import {
   StyledForm,
   StyledField,
@@ -24,6 +26,7 @@ export const UserForm: React.FC = () => {
       <MainWrapper>
         <Formik
           initialValues={{
+            id: uuidv4(),
             name: "",
             email: "",
             birthday_date: "",
@@ -32,10 +35,10 @@ export const UserForm: React.FC = () => {
           }}
           //   validationSchema={loginSchema}
           onSubmit={(
-            { name, email, birthday_date, phone_number, address },
+            {id, name, email, birthday_date, phone_number, address },
             { resetForm }
           ) => {
-          console.log({ name, email, birthday_date, phone_number, address })
+          console.log({id, name, email, birthday_date, phone_number, address })
             // dispatch(logIn({ values: { username: name, password: password } }));
             resetForm();
           }}
