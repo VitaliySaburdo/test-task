@@ -1,7 +1,22 @@
-import { Table, Head, ColumnHead, TableRow, Columns, OptionWrapper } from "./Tables.styled";
+import { useState } from "react";
+import {
+  Table,
+  Head,
+  ColumnHead,
+  TableRow,
+  Columns,
+  OptionWrapper,
+} from "./Tables.styled";
 import { users } from "../../db/usersDb.js";
 
 export const Tables = () => {
+  const [userList, setUserList] = useState(users);
+
+  const handleDelete = (id: string) => {
+    const updatedUserList = userList.filter((item) => item.id !== id);
+    setUserList(updatedUserList);
+  };
+
   return (
     <>
       <Table>
@@ -16,7 +31,7 @@ export const Tables = () => {
           </TableRow>
         </Head>
         <tbody>
-          {users.map(
+          {userList.map(
             ({ id, name, email, birthday_date, phone_number, address }) => (
               <tr key={id}>
                 <Columns>{name}</Columns>
@@ -26,10 +41,12 @@ export const Tables = () => {
                 <Columns>{address}</Columns>
                 <Columns>
                   <OptionWrapper>
-                  <button type="button">Edit</button>
-                  <button type="button">Replace</button>
-                    <button type="button">Delete</button>
-                    </OptionWrapper>
+                    <button type="button">Edit</button>
+                    <button type="button">Replace</button>
+                    <button type="button" onClick={() => handleDelete(id)}>
+                      Delete
+                    </button>
+                  </OptionWrapper>
                 </Columns>
               </tr>
             )
