@@ -14,8 +14,22 @@ import {
 import { Icon } from "../Icon/Icon";
 import { addUser } from "../../redux/users/userOperations";
 
+interface ChangeUserFormProps {
+  currentUser: {
+    id: string;
+    name: string;
+    email: string;
+    birthday_date: string;
+    phone_number: string;
+    address: string;
+  };
+}
 
-export const ChangeUserForm: React.FC = () => {
+export const ChangeUserForm: React.FC<ChangeUserFormProps> = ({ currentUser }) => {
+  const {id, name, email, birthday_date, phone_number, address } = currentUser;
+
+  console.log(id);
+
   const dispatch = useAppDispatch();
 
   return (
@@ -23,11 +37,11 @@ export const ChangeUserForm: React.FC = () => {
       <MainWrapper>
         <Formik
           initialValues={{
-            name: "",
-            email: "",
-            birthday_date: "",
-            phone_number: "",
-            address: "",
+            name: name || "",
+            email: email || "",
+            birthday_date: birthday_date || "",
+            phone_number: phone_number || "",
+            address: address || "",
           }}
             validationSchema={AddSchema}
           onSubmit={(

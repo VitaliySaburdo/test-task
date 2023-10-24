@@ -14,6 +14,7 @@ import {
 import { Modal } from "../Modal/Modal";
 import { AddForm } from "../AddForm/AddForm";
 import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";
+import {UserProps} from '../App/App.types';
 
 interface TablesProps {
   nextPage: () => void;
@@ -23,7 +24,7 @@ interface TablesProps {
 export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
   const [isOpenChangeModal, setIsOpenChangeModal] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
 
   const users = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
@@ -37,10 +38,9 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
     if (user) {
       setCurrentUser(user);
     }
-    
+    setIsOpenChangeModal(true)
   };
 
-  console.log(currentUser);
   const handleDelete = (id: string) => {
     dispatch(deleteUser(id));
   };
@@ -106,9 +106,9 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
           <AddForm />
         </Modal>
       )}
-      {isOpenChangeModal && (
+      {isOpenChangeModal && currentUser !== null && (
         <Modal onClick={() => setIsOpenChangeModal(false)}>
-          <ChangeUserForm />
+          <ChangeUserForm currentUser={currentUser} />
         </Modal>
       )}
     </>
