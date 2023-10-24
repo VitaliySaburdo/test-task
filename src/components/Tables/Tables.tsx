@@ -20,13 +20,13 @@ interface TablesProps {
 }
 
 export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAddModal, setIsOpenAddModal] = useState(false);
 
   const users = useAppSelector(selectUsers);
   const dispatch = useAppDispatch();
 
   const handleAddUser = () => {
-    setIsOpen(true);
+    setIsOpenAddModal(true);
   };
 
   const handleDelete = (id: string) => {
@@ -81,8 +81,8 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
       <AddBtn type="button" onClick={handleAddUser}>
         Add user
       </AddBtn>
-      {isOpen && (
-        <Modal onClick={() => setIsOpen(false)}>
+      {isOpenAddModal && (
+        <Modal onClick={() => setIsOpenAddModal(false)}>
           <AddForm />
         </Modal>
       )}
