@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { notify } from "../../helpers/Notification";
 
-axios.defaults.baseURL = "http://146.190.118.121/api";
+axios.defaults.baseURL = "https://technical-task-api.icapgroupgmbh.com/api";
 
 
 type LogInPayload = {

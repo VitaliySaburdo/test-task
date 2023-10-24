@@ -24,6 +24,7 @@ export const Tables = () => {
 
   const handleEdit = (id: string) => {
     const userToEdit = userList.find((user) => user.id === id);
+    console.log(userToEdit)
     if (userToEdit) {
       setEditingUser(userToEdit);
       setIsOpen(true);

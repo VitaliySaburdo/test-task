@@ -13,6 +13,8 @@ import {
   Button,
 } from "./UserForm.styled";
 import { Icon } from "../Icon/Icon";
+// import {UserProps} from '../App/App.types'
+
 
 export const UserForm: React.FC = () => {
   //   const dispatch = useAppDispatch();
