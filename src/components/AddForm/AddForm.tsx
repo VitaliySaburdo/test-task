@@ -71,7 +71,7 @@ export const AddForm: React.FC<AddFormProps> = ({closeModal}) => {
             <StyledLabel htmlFor="birthday_date">Birthday date</StyledLabel>
             <div style={{ position: "relative" }}>
               <StyledField
-                type="text"
+                type="date"
                 id="birthday_date"
                 name="birthday_date"
                 placeholder="Please enter your Birthday date"
