@@ -45,7 +45,7 @@ export const putUser = createAsyncThunk(
   "users/putContact",
   async ({ id, contact }: { id: string; contact: AddUserProps }, thunkAPI) => {
     try {
-      const response = await axios.put(`${BASE_URL}/table/${id}`, contact);
+      const response = await axios.put(`${BASE_URL}/table/${id}/`, contact);
       return response.data;
     } catch (error: any) {
       if (error.code === "ERR_BAD_RESPONSE") {
@@ -64,7 +64,7 @@ export const deleteUser = createAsyncThunk(
   "users/deleteUser",
   async (id: string, thunkAPI) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/table/${id}`);
+      const res = await axios.delete(`${BASE_URL}/table/${id}/`);
       return res.data;
     } catch (error: any) {
       if (error.message === "Request failed with status code 403") {
