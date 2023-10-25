@@ -10,7 +10,6 @@ import { selectCount } from "../redux/users/userSelectors";
 export const TablesPage = () => {
   const [item, setItem] = useState<number>(1);
   const dispatch = useAppDispatch();
-  console.log(item)
   const usersOnPage = 10;
 
   const count = useAppSelector(selectCount);
