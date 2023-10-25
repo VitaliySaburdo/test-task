@@ -13,7 +13,7 @@ export const getAllUsers = createAsyncThunk(
       const res = await axios.get(`/table/?limit=10&offset=${offset}`);
       return {
         users: res.data.results,
-        count: res.data.count, 
+        count: res.data.count,
       };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
@@ -35,6 +35,13 @@ export const addUser = createAsyncThunk(
       }
       return res.data;
     } catch (error: any) {
+      if (error.code === "ERR_BAD_REQUEST") {
+        notify({
+          message: "A user with this email address already exists",
+          type: "warning",
+        });
+      }
+
       return thunkAPI.rejectWithValue(error.message);
     }
   }
