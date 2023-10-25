@@ -8,9 +8,9 @@ const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 // GET @ / getAllUsers
 export const getAllUsers = createAsyncThunk(
   "users/fetchAll",
-  async (page: number, thunkAPI) => {
+  async (offset: number, thunkAPI) => {
     try {
-      const res = await axios.get(`/table/?limit=10&offset=${page}`);
+      const res = await axios.get(`/table/?limit=10&offset=${offset}`);
       return {
         users: res.data.results,
         count: res.data.count, 
