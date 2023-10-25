@@ -4,12 +4,14 @@ import { getAllUsers, addUser, deleteUser, putUser } from "./userOperations";
 
 interface UsersState {
   users: UserProps[];
+  count: number;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: UsersState = {
   users: [],
+  count: 0,
   isLoading: false,
   error: null,
 };
@@ -25,6 +27,7 @@ const usersSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.users = [];
+      state.count = 0;
       state.isLoading = false;
       state.error = null;
     },
@@ -32,7 +35,8 @@ const usersSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+        state.users = action.payload.users;
+        state.count = action.payload.count;
         state.isLoading = false;
         state.error = null;
       })
@@ -42,8 +46,6 @@ const usersSlice = createSlice({
         state.error = null;
       })
       .addCase(putUser.fulfilled, (state, action) => {
-        console.log(action.payload.id);
-        console.log(action.payload);
         const index = state.users.findIndex(
           (user) => user.id === action.payload.id
         );

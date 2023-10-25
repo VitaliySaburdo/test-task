@@ -1,35 +1,31 @@
 import { useState, useEffect } from "react";
-import { useAppDispatch } from "../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { Pagination } from "@mui/material";
 import { Container } from "../components/Container/Container";
 import { Section } from "../components/Section/Section";
 import { Tables } from "../components/Tables/Tables";
 import { getAllUsers } from "../redux/users/userOperations";
-
+import { selectCount } from "../redux/users/userSelectors";
 
 export const TablesPage = () => {
   const [page, setPage] = useState<number>(1);
   const dispatch = useAppDispatch();
-  
- useEffect(() => {
+  const count = useAppSelector(selectCount);
+
+  useEffect(() => {
     dispatch(getAllUsers(page));
- }, [dispatch, page]);
-  
-    const onNextPage = () => {
-    setPage((prevState) => prevState + 1);
-  };
-  const onPreviousPage = () => {
-    if (page > 1) {
-      setPage((prevState) => prevState - 1);
-    }
-  };
+  }, [dispatch, page, count]);
 
   return (
     <>
       <Section>
         <Container>
-          <Tables
-          previousPage={onPreviousPage}
-          nextPage={onNextPage}/>
+          <Tables />
+          <Pagination
+            count={count}
+            page={page}
+            onChange={(_, num) => setPage(num)}
+          />
         </Container>
       </Section>
     </>

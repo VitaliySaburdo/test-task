@@ -14,7 +14,6 @@ export const logIn = createAsyncThunk(
   async ({ values }: LogInPayload, thunkAPI) => {
     try {
       const res = await axios.post("/login/", values);
-      console.log(res);
       if (res.status === 200) {
         notify({
           message: `Welcome "${values.username}"`,

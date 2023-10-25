@@ -5,13 +5,16 @@ import { notify } from "../../helpers/Notification";
 
 const BASE_URL = "https://technical-task-api.icapgroupgmbh.com/api";
 
-// GET @ / productsAll
+// GET @ / getAllUsers
 export const getAllUsers = createAsyncThunk(
   "users/fetchAll",
   async (page: number, thunkAPI) => {
     try {
       const res = await axios.get(`/table/?limit=10&offset=${page}`);
-      return res.data.results;
+      return {
+        users: res.data.results,
+        count: res.data.count, 
+      };
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);
     }

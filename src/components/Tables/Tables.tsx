@@ -16,12 +16,8 @@ import { AddForm } from "../AddForm/AddForm";
 import { ChangeUserForm } from "../ChangeUserForm/ChangeUserForm";
 import { UserProps } from "../App/App.types";
 
-interface TablesProps {
-  nextPage: () => void;
-  previousPage: () => void;
-}
 
-export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
+export const Tables: React.FC = () => {
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
   const [isOpenChangeModal, setIsOpenChangeModal] = useState(false);
   const [currentUser, setCurrentUser] = useState<UserProps | null>(null);
@@ -92,12 +88,6 @@ export const Tables: React.FC<TablesProps> = ({ nextPage, previousPage }) => {
           )}
         </tbody>
       </Table>
-      <button type="button" onClick={previousPage}>
-        Prev
-      </button>
-      <button type="button" onClick={nextPage}>
-        Next
-      </button>
       <AddBtn type="button" onClick={handleAddUser}>
         Add user
       </AddBtn>
