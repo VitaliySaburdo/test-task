@@ -9,22 +9,19 @@ pleasant use of the application.
 ## Technologies
 
 The following libraries and technologies are used in the project:
-
-- react
-- react-redux
-- reduxjs/toolkit
-- redux-persist
-- react-router-dom
-- react-loader-spinner
-- react-scroll
-- react-loader-spinner
-- axios
-- styled-components
-- mui/material
-- formik
-- yup
-- hamburger-react
-- react-hot-toast
+    - react
+    - typescript
+    - react-dom
+    - react-redux
+    - react-router-dom
+    - react-toastify
+    - mui/material
+    - axios
+    - formik
+    - redux-persist
+    - styled-components
+    - web-vitals
+    - yup
 
 ### `npm start`
 
