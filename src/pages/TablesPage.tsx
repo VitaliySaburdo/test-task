@@ -8,13 +8,17 @@ import { getAllUsers } from "../redux/users/userOperations";
 import { selectCount } from "../redux/users/userSelectors";
 
 export const TablesPage = () => {
-  const [page, setPage] = useState<number>(1);
+  const [item, setItem] = useState<number>(1);
   const dispatch = useAppDispatch();
+  console.log(item)
+  const usersOnPage = 10;
+
   const count = useAppSelector(selectCount);
 
   useEffect(() => {
-    dispatch(getAllUsers(page));
-  }, [dispatch, page, count]);
+    const offset = (item - 1) * usersOnPage;
+    dispatch(getAllUsers(offset));
+  }, [dispatch, item, count]);
 
   return (
     <>
@@ -22,9 +26,9 @@ export const TablesPage = () => {
         <Container>
           <Tables />
           <Pagination
-            count={count}
-            page={page}
-            onChange={(_, num) => setPage(num)}
+            count={Math.ceil(count / usersOnPage)}
+            page={item}
+            onChange={(_, num) => setItem(num)}
           />
         </Container>
       </Section>
